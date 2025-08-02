@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme optimizado para móvil
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 216 35% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 35% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 35% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 220 91% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 35% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 35% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 220 35% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 35% 20%;
+    --input: 220 35% 16%;
+    --ring: 220 91% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 35% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 220 91% 50%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 220 35% 16%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 35% 20%;
+    --sidebar-ring: 220 91% 50%;
+  }
+
+  .dark {
+    --background: 216 35% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 35% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 35% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 220 91% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 35% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 35% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 220 35% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 35% 20%;
+    --input: 220 35% 16%;
+    --ring: 220 91% 50%;
+    --sidebar-background: 220 35% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 220 91% 50%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 220 35% 16%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 35% 20%;
+    --sidebar-ring: 220 91% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Optimizaciones para móvil */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Smooth scrolling en móvil */
+    -webkit-overflow-scrolling: touch;
+    /* Evitar zoom en inputs en iOS */
+    font-size: 16px;
+  }
+
+  /* Safe area para dispositivos con notch */
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-pl {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-pr {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Optimizaciones para scroll suave */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mejoras para inputs táctiles */
+  button,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Animaciones optimizadas para móvil */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-in {
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+
+    .slide-in-from-bottom {
+      animation-name: slideInFromBottom;
+    }
+
+    .slide-in-from-top {
+      animation-name: slideInFromTop;
+    }
+
+    .fade-in {
+      animation-name: fadeIn;
+    }
+  }
+
+  /* Keyframes para animaciones móviles */
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Estilos para modals móviles */
+  .mobile-modal {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  /* Mejoras para elementos interactivos en móvil */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Scrollbar personalizado para webkit (móvil) */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Estilo para campos de entrada táctiles */
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Evita zoom en iOS */
+    border-radius: var(--radius);
+  }
+
+  /* Backdrop blur optimizado */
+  .backdrop-blur-mobile {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Sombras optimizadas para móvil */
+  .shadow-mobile {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-mobile-lg {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-mobile-xl {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Gradientes optimizados para móvil */
+  .gradient-mobile-bg {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.98) 0%,
+      rgba(30, 41, 59, 0.95) 35%,
+      rgba(51, 65, 85, 0.92) 100%
+    );
+  }
+
+  /* Estilos para elementos de campo de fútbol */
+  .field-lines {
+    background-image:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.7) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Hover states optimizados para móvil */
+  @media (hover: hover) {
+    .hover-lift:hover {
+      transform: translateY(-2px);
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Focus states mejorados para accesibilidad */
+  .focus-visible:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Typography optimizada para móvil */
+  .text-mobile-lg {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .text-mobile-xl {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .text-mobile-2xl {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  /* Estados de carga optimizados */
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Utilidades para gestos táctiles */
+  .prevent-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .enable-select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+/* Media queries específicas para móviles */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ajustes específicos para pantallas pequeñas */
+  .mobile-padding {
+    padding: 1rem;
+  }
+
+  .mobile-margin {
+    margin: 0.5rem;
+  }
+}
+
+/* PWA y viewport optimizations */
+@media (display-mode: standalone) {
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Optimizaciones para orientación de pantalla */
+@media (orientation: landscape) and (max-height: 640px) {
+  .landscape-compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
